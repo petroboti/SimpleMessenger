@@ -13,6 +13,7 @@ namespace messengerTest
     {
         SqlConnection conn;
         public UserDatabase() {
+                                     
             conn = new SqlConnection("Data Source=DESKTOP-N3G2RBD;Initial Catalog=UserDatabase;Integrated Security=True");
         }
 
@@ -20,20 +21,21 @@ namespace messengerTest
         {
             try
             {
-                String querry = "SELECT * FROM UserDatabase WHERE email = '" + email + "' AND password = '" + password + "'";
+                String querry = "SELECT * FROM UserData WHERE email = '" + email + "' AND password = '" + password + "'";
                 SqlDataAdapter adapter = new SqlDataAdapter(querry, conn);
                 DataTable dtable = new DataTable();
                 adapter.Fill(dtable);
                 if(dtable.Rows.Count > 0)
                 {
                     Console.WriteLine("succesfull login");
+                    Console.WriteLine(dtable.Rows[0][3].ToString());
                     return Int32.Parse(dtable.Rows[0][3].ToString()) ;
                 }
             }
             catch (Exception)
             {
-                
-                throw;
+                Console.WriteLine("unsuccesfull login");
+                return 0;
             }
             finally 
             {
@@ -46,7 +48,7 @@ namespace messengerTest
         {
             try
             {
-                String querry = "SELECT * FROM UserDatabase WHERE id = '" + id + "'";
+                String querry = "SELECT * FROM UserData WHERE id = '" + id + "'";
                 SqlDataAdapter adapter = new SqlDataAdapter(querry, conn);
                 DataTable dtable = new DataTable();
                 adapter.Fill(dtable);

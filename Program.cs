@@ -2,13 +2,13 @@
 using messengerTest;
 
 Console.WriteLine("Hello, World!");
-UserDatabase userDatabase = new UserDatabase();
-int Userid = userDatabase.Login("johnsmith@example.com", "Pa$$w0rd123");
-RoomDatabase roomDatabase = new RoomDatabase();
-Room room = roomDatabase.GetRoom(Userid, 1);
-foreach (Message message in room.messages)
+//database init
+//login charlotteking15@example.com PrivatePwd123!
+// davidcooper24@example.com Passphrase789!
+
+Menu menu = new Menu();
+while (true)
 {
-    Console.WriteLine(message.Content+"\t"+message.UserId);
+    menu.StartMenu();
 }
-Console.WriteLine(Userid);
-Console.WriteLine(userDatabase.GetUserName(Userid));
+
